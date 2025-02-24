@@ -237,3 +237,13 @@ from emp;
 -다중행 결과가 나오면 ORA-01427: single-row subquery returns more than one row" 라는 오류가 발생<br><br>
 인라인뷰(Inline View) ( = 다이나믹뷰(Dynamic View) )<br>
 -FROM 절에 사용되는 서브쿼리
+
+28. 2장 77번<br>
+ROW_NUMBER()<br>
+-각 그룹 내에서 정해진 순서를 기준으로 1부터 순번을 매김<br><br>
+ROWS BETWEEN 범위1 AND 범위2<br>
+-ORDER BY 절에서 사용<br>
+-현재 행을 기준으로 계산할 범위를 지정<br>
+-UNBOUNDED PRECEDING => 시작 지점을 첫 번째 행으로 설정하여 모든 이전 행을 포함<br>
+-CURRENT ROW => 현재 행을 포함<br>
+-ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW => 첫 행부터 현재 행의 범위<br><br>
