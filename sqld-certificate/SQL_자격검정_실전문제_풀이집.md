@@ -247,3 +247,5 @@ ROWS BETWEEN 범위1 AND 범위2<br>
 -UNBOUNDED PRECEDING => 시작 지점을 첫 번째 행으로 설정하여 모든 이전 행을 포함<br>
 -CURRENT ROW => 현재 행을 포함<br>
 -ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW => 첫 행부터 현재 행의 범위<br><br>
+1.각 윈도우 함수로 생성된 칼럼은 서로 영향을 주지 않는다.(+기존 테이블 변화에도 영향 없음)<br>
+2.MAX(연봉) OVER (ORDER BY 연봉 DESC ROWS CURRENT ROW) AS COL3 => 현재 행의 연봉만 참조하므로 자기자신의 연봉과 같음
