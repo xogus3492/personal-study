@@ -267,3 +267,57 @@ ALL<br>
 GROUP BY ROLLUP(A, B)랑 GROUP BY A, ROLLUP(B)의 차이<br>
 -GROUP BY ROLLUP(A, B) → 전체 집계 포함 ((NULL, NULL))<br>
 -GROUP BY A, ROLLUP(B) → 각 A별로만 ROLLUP 수행 (전체 집계 없음)
+
+32. 2장 83번<br>
+GROUPING SETS()<br>
+-각 인수별 집계함수를 구하는 함수
+-인수들 간에는 평등한 관계이므로 인수의 순서가 바뀌어도 결과는 같음<br><br>
+(1) => 각각 상품ID와 월을 기준으로 집계해야하므로 GROUPING SETS(상품ID, 월) 이여야함
+
+33. 2장 84번<br>
+윈도우 함수는 OVER 문구를 키워드로 필수 포함<br>
+	```sql
+	SELECT WINDOW_FUNCTION (ARGUMENTS) OVER 
+	( [PARTITION BY 컬럼] [ORDER BY 컬럼] [WINDOWING 절] )
+	FROM 테이블명 ;
+	```
+
+34. 2장 88번<br>
+ROWS와 RANGE 차이<br>
+![image](https://github.com/user-attachments/assets/e4df292d-61fd-4c89-81ea-0b5e45d54bb0)<br>
+ROWS : 조회된 데이터를 물리적 위치(ROWNUM)로 구분하여 모든 행이 1개의 행으로 인식<br>
+RANGE : ORDER BY 절에 명시된 칼럼으로 논리적인 행 집합을 구성하며, 집합으로 묶인 그룹을 1개의 행으로 인식<br><br>
+1 PRECENDING => 현재 행을 기준으로 1개 이전 행<br>
+1 FOLLOWING => 현재 행을 기준으로 1개 다음 행<br>
+UNBOUNDED PRECENDING => 처음 행부터 현재 행까지<br>
+UNBOUNDED FOLLOWING => 현재 행부터 마지막 행까지
+
+35. 2장 90번<br>
+LAG([칼럼], [N], [VAL])<br>
+-그룹 내 이전 몇 번째 행의 칼럼 값을 가져옴<br>
+-N(몇 번째), VAL(값이 없을 경우 기본 값)은 option<br>
+LEAD([칼럼], [N], [VAL])<br>
+-그룹 내 이후 몇 번째 행의 칼럼 값을 가져옴<br>
+-마찬가지로 N(몇 번째), VAL(값이 없을 경우 기본 값)은 option
+
+36. 2장 91번<br>
+GRANT<br>
+-사용자(USER)에게 권한 부여<br>
+REVOKE<br>
+-사용자(USER)에게 부여한 권한을 다시 회수<br><br>
+(3) REVOKE 문을 사용하여 권한을 취소하면 권한을 취소당한 사용자가 WITH GRANT OPTION을 통해서 다른 사용자에게 허가했던 권한글까지 연쇄적으로 모두 취소된다.
+
+37. 2장 92번<br>
+CASCADE : 해당 스키마 소속 객체들이 있으면 모두 삭제<br>
+RESTRICT : 해당 스키마 소속 객체들이 있으면 오류를 내고 종료 (기본값)
+
+38. 2장 95번<br>
+CUBE(A, B) = GROUPINGB SETS((A, B), A, B, ())
+
+39. 2장 100번<br>
+ORACLE<br>
+-ALTER TABLE 테이블명 MODIFY (칼럼명1 데이터 유형 [DEFAULT 식] [NOT NULL], 칼럼명2 데이터 유형 ...)<br>
+SQL Server<br>
+-ALTER TABLE 테이블명 ALTER COLUMN 칼럼명 데이터 유형 [DEFAULT 식] [NOT NULL];<br><br>
+-SQL Server에서는 여러개의 칼럼을 ALTER COLUMN으로 동시에 수정하는 구문은 지원하지 않는다.<br>
+-NOT NULL 칼럼을 수정할 때 NOT NULL 구문을 명시하지 않으면 기존의 NOT NULL 제약조건이 NULL로 변경된다.
