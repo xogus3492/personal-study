@@ -249,3 +249,21 @@ ROWS BETWEEN 범위1 AND 범위2<br>
 -ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW => 첫 행부터 현재 행의 범위<br><br>
 1.각 윈도우 함수로 생성된 칼럼은 서로 영향을 주지 않는다.(+기존 테이블 변화에도 영향 없음)<br>
 2.MAX(연봉) OVER (ORDER BY 연봉 DESC ROWS CURRENT ROW) AS COL3 => 현재 행의 연봉만 참조하므로 자기자신의 연봉과 같음
+
+29. 2장 78번<br>
+GROUPING()
+-GROUPING 함수는 직접 그룹별 집계를 구하지는 않지만 ROLLUP, CUBE, GROUPING SETS를 지원하는 역할을 함<br>
+-집계가 계산된 결과에 GROUPING(표현식) = 1이 되며, 그 외에는 GROUPING(표현식) = 0이 됨<br><br>
+
+ROLLUP(칼럼1, 칼럼2)에서 칼럼1은 총 소계를 집계하는 것을 제외하면 null 값이 존재하지 않음
+
+30. 2장 79번<br>
+ANY<br>
+-다중 행 연산에 사용, 조건을 만족하는 값이 하나라도 있다면 결과를 리턴<br>
+ALL<br>
+-다중 행 연산에 사용, 모든 조건을 만족하는 결과를 리턴
+
+31. 2장 80번<br>
+GROUP BY ROLLUP(A, B)랑 GROUP BY A, ROLLUP(B)의 차이<br>
+-GROUP BY ROLLUP(A, B) → 전체 집계 포함 ((NULL, NULL))<br>
+-GROUP BY A, ROLLUP(B) → 각 A별로만 ROLLUP 수행 (전체 집계 없음)
