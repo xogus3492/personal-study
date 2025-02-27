@@ -321,3 +321,59 @@ SQL Server<br>
 -ALTER TABLE 테이블명 ALTER COLUMN 칼럼명 데이터 유형 [DEFAULT 식] [NOT NULL];<br><br>
 -SQL Server에서는 여러개의 칼럼을 ALTER COLUMN으로 동시에 수정하는 구문은 지원하지 않는다.<br>
 -NOT NULL 칼럼을 수정할 때 NOT NULL 구문을 명시하지 않으면 기존의 NOT NULL 제약조건이 NULL로 변경된다.
+
+40. 2장 101번<br>
+트랜잭션 ACID 특성<br>
+(1)원자성(Atomicity)<br>
+-트랜잭션을 하나의 작업 단위로 보고 결과는 성공(1), 실패(0) 두가지여야함<br>
+-데이터베이스에 모두 반영되거나(1), 반영되지 않아야함<br>
+(2)일관성(Consistency)<br>
+-트랜잭션 이후, 데이터나 시스템이 가지고 있는 고정요소나 상태가 수행 전과 후의 상태와 같아야함<br>
+-기본키, 외래키와 같은 무결성 제약 조건들과 비명시적 일관성 조건들 등<br>
+(3)고립성(Isolation)<br>
+-각각의 트랜잭션은 서로의 작업 수행에 간섭 또는 영향을 줄 수 없음을 보장함<br>
+(4)영속성(Durability)<br>
+-성공한 트랜잭션 결과는 안정적으로 보존되어야하고 데이터베이스에 영구적으로 반영되야 함<br>
+-시스템에 오류가 발생해도 데이터베이스에 반영되어야 함
+
+41. 2장 106번<br>
+![image](https://github.com/user-attachments/assets/80827853-82ef-4232-b798-7ba61bf33c5e)
+
+42. 2장 109번<br>
+후보키(Candidate Key)<br>
+-테이블에서 각 행을 유일하게 식별할 수 있는 최소한의 속성들의 집합<br>
+-후보키는 기본키가 될 수 있는 후보들이며 유일성과 최소성을 동시에 만족해야함<br>
+대리키(Surrogate Key)<br>
+-식별자가 너무 길거나 여러 개의 속성으로 구성되어 있는 경우 인위적으로 추가하는 식별자<br>
+-주로 속도를 향상시키기 위해 사용
+
+43. 2장 110번<br>
+칼럼 삭제 (데이터 삭제 X)<br>
+=> ALTER TABLE 테이블명 DROP COLUMN 칼럼명;
+
+44. 2장 113번<br>
+(1) CASACADE => 부모 데이터 삭제 시, 자식 데이터도 함께 삭제(Delete Action)<br>
+(2) Restrict => 자식 테이블에 PK 값이 없는 경우에만 부모 데이터 삭제 허용(Delete Action)<br>
+(3) Automatic => 부모 테이블에 PK가 없는 경우, 부모 PK 생성 후 자식 데이터 삽입(Insert Action)<br>
+(3) Dependent => 부모 테이블에 PK가 존재할 때만 자식 데이터 삽입(Insert Action)
+
+45. 2장 119번
+    | TRUNCATE | DELETE |
+    | --- | --- |
+    | DDL(일부 DML 성격을 가짐) | DML |
+    | Rollback 불가능 | Commit 이전 Rollback 가능 |
+    | Auto Commit | 사용자가 Commit |
+    | 테이블을 최초 생성된 초기상태로 만듦 | 데이터만 삭제 |
+    | 비교적 빠른 성능 | 비교적 느린 성능 |
+    
+    둘 다 테이블의 데이터만 삭제
+
+46. 2장 121번<br>
+-Oracle은 DDL 문장 수행 후 자동으로 COMMIT을 수행하고 내부적으로 트랜잭션을 종료시킴<br>
+-SQL Server에서는 DDL 문장 수행 후 자동으로 COMMIT을 수행하지 않고 CREATE TABLE 문장도 트랜잭션 범주에 포함시킴
+
+47. 2장 125번<br>
+TOP WITH TIES<br>
+-TOP과 동일하게 상위 N개의 데이터를 조회<br>
+-동일한 데이터가 있을 경우 함께 출력<br>
+-ORDER BY 절 필수
