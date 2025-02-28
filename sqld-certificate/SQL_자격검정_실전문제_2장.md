@@ -1,3 +1,4 @@
+
 1. 2장 28번 (order by에 case문이 존재할 경우)<br>
 ex) order by (case when id = 999 then 0 else id end) => id가 999라면 0으로 취급하고 id를 기준으로 오름차순
 
