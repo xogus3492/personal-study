@@ -21,7 +21,7 @@ REPLACE()
 ex) order by (case when id = 999 then 0 else id end) => id가 999라면 0으로 취급하고 id를 기준으로 오름차순
 
 7. 29번<br>
-(3) select 절에 기술되지 않는 칼럼을 이후에 수행되는 order by 절에 사용하는 것은 논리적으로 맞지 않다.<br>
+(3) 지역 칼럼으로 그룹핑 됐기 때문에 년 칼럼은 하나의 행으로 축약이 되어서 order by 절로 정렬할 수 없음<br>
 (4) order by에 집계함수를 사용해도 상관없음
 
 8. 31번<br>
