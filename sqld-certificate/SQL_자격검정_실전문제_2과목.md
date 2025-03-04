@@ -134,9 +134,28 @@ PARTITION BY<br>
 RATIO_TO_REPORT()<br>
 -그룹별 전체 값의 합계 대비 해당 행의 비율을 반환, OVER() 사용 가능, 0~1 사이 값으로 계산<br>
 -모두 더하면 1<br>
-ex) RATIO_TO_REPORT(salary) OVER()
+ex) RATIO_TO_REPORT(salary) OVER()<br><br>
+PARTITION BY 절에 ORDER BY 를 사용하면 누적 합계를 표시함<br>
+아래와 같은 테이블이 있을 때,<br>
+<img width="528" alt="스크린샷 2025-03-04 오후 8 48 30" src="https://github.com/user-attachments/assets/5c335f51-70be-474d-807e-2e5c385c4648" /><br>
+	```sql
+	SELECT 사원번호, 이름, 부서코드, 급여,
+	SUM(급여) OVER (PARTITION BY 부서코드 ORDER BY 사원번호) AS 부서급여합
+ 	FROM 직원
+	WHERE 부서코드 IN ('mkt', 'hrd');
+	```
+ 	[결과]<br>
+	<img width="541" alt="스크린샷 2025-03-04 오후 8 50 00" src="https://github.com/user-attachments/assets/38edb79f-da1c-454a-82e9-2ddad4fbb54a" /><br><br>
+ 	```sql
+	SELECT 사원번호, 이름, 부서코드, 급여,
+		SUM(급여) OVER (PARTITION BY 부서코드) AS 부서급여합
+	FROM 직원
+	WHERE 부서코드 IN ('mkt', 'hrd');
+	```
+ 	[결과]<br>
+ 	<img width="532" alt="스크린샷 2025-03-04 오후 8 51 27" src="https://github.com/user-attachments/assets/cdbd2613-396c-4b64-9889-122d79237bd6" />
 
-23. 60번<br>
+24. 60번<br>
 계층적 데이터 쿼리<br><br>
 [1] START WITH<br>
 -계층 구조의 시작점을 지정한다.<br>
@@ -155,10 +174,10 @@ B<br>
 D<br>
 답) C
 
-24. 61번<br>
+25. 61번<br>
 루트 노드의 LEVEL 값은 1이다.
 
-25. 64번<br>
+26. 64번<br>
 CONNECT BY PRIOR C1 = C2<br>
 -현재 행의 C1이 부모 행의 C2와 같을 때 연결<br><br>
 CONNECT BY C1 = PRIOR C2<br>
@@ -167,13 +186,13 @@ LEVEL<br>
 -오라클 계층 쿼리에서 계층 구조의 깊이를 나타내는 가상 컬럼<br>
 -START WITH에서 시작한 루트 노드는 LEVEL = 1이고, 그 아래에 있는 자식들은 LEVEL = 2, 그다음 손자들은 LEVEL = 3...
 
-26. 66번<br>
+27. 66번<br>
 Range Join 후, 조인 대상 테이블(B테이블) 칼럼을 기준으로 그룹핑하면 A의 다른 값에 의해 조인된 값이 쓰이기 때문에 기존 테이블(A테이블) 칼럼을 기준으로 그룹핑해야함
 
-27. 67번<br>
+28. 67번<br>
 A||B = ‘AB’
 
-28. 68번
+29. 68번
     | 서브쿼리 유형 | 행 수 | 컬럼 수 | 주요 연산자 | 특징 |
     | --- | --- | --- | --- | --- |
     | 단일 행 & 단일 컬럼 | 1개 | 1개 | `=, <, <=, >, >=, <>` |  |
@@ -181,7 +200,7 @@ A||B = ‘AB’
     | 다중 행 & 단일 컬럼 | 여러 개 | 1개 | `IN`, `ANY`, `ALL` |  |
     | 다중 행 & 다중 컬럼 | 여러 개 | 여러 개 | `EXISTS`, `IN ((val1, val2), (val3, val4))` | 메인 쿼리와 서브쿼리에서 비교하고자 하는 칼럼 개수, 위치가 동일해야함 |
 
-29. 69번<br>
+30. 69번<br>
 PERCENT_RANK()
 -정렬 칼럼을 기준으로 백분위로 순위를 매길 때 사용
 -반환 값 = (그룹별 로우의 순위 - 1) / (그룹별 전체 로우수 - 1)
