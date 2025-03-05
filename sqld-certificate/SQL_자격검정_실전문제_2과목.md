@@ -396,7 +396,12 @@ SQL Server<br>
 (3) Automatic => 부모 테이블에 PK가 없는 경우, 부모 PK 생성 후 자식 데이터 삽입(Insert Action)<br>
 (3) Dependent => 부모 테이블에 PK가 존재할 때만 자식 데이터 삽입(Insert Action)
 
-50. 119번
+50. 115번<br>
+VARCHAR2 타입의 컬럼에 숫자 1을 삽입하면 암시적 형 변환이 발생<br>
+INSERT INTO table_name (col_name) VALUES (1);<br>
+=> 내부적으로 INSERT INTO table_name (col_name) VALUES ('1'); 로 변환
+
+52. 119번
     | TRUNCATE | DELETE |
     | --- | --- |
     | DDL(일부 DML 성격을 가짐) | DML |
@@ -407,11 +412,11 @@ SQL Server<br>
     
     둘 다 테이블의 데이터만 삭제
 
-51. 121번<br>
+53. 121번<br>
 -Oracle은 DDL 문장 수행 후 자동으로 COMMIT을 수행하고 내부적으로 트랜잭션을 종료시킴<br>
 -SQL Server에서는 DDL 문장 수행 후 자동으로 COMMIT을 수행하지 않고 CREATE TABLE 문장도 트랜잭션 범주에 포함시킴
 
-52. 125번<br>
+54. 125번<br>
 TOP WITH TIES<br>
 -TOP과 동일하게 상위 N개의 데이터를 조회<br>
 -동일한 데이터가 있을 경우 함께 출력<br>
