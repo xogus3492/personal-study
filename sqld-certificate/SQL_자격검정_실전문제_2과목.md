@@ -292,7 +292,7 @@ ROWS BETWEEN 범위1 AND 범위2<br>
 34. 78번<br>
 GROUPING()
 -GROUPING 함수는 직접 그룹별 집계를 구하지는 않지만 ROLLUP, CUBE, GROUPING SETS를 지원하는 역할을 함<br>
--집계가 계산된 결과에 GROUPING(표현식) = 1이 되며, 그 외에는 GROUPING(표현식) = 0이 됨<br><br>
+-집계가 계산된 결과에 GROUPING(표현식) = 1이 되며, 그 외에는 GROUPING(표현식) = 0이 됨 (집계된 경우 = NULL이므로 1을 반환)<br><br>
 
 ROLLUP(칼럼1, 칼럼2)에서 칼럼1은 총 소계를 집계하는 것을 제외하면 null 값이 존재하지 않음
 
