@@ -163,6 +163,7 @@ PARTITION BY 절에 ORDER BY 를 사용하면 누적 합계를 표시함<br>
 [2] CONNECT BY<br>
 -부모와 자식 간의 관계를 지정한다.<br>
 -PRIOR는 현재 레벨의 컬럼 값을 이전 레벨의 값과 비교하는 데 사용된다.<br>
+-(PRIOR 자식 = 부모) => 순방향 전개<br>
 -ex) CONNECT BY PRIOR C1 = C2 ⇒ 현재 행의 C1 값이 다음 행의 C2값과 일치하는 행을 찾는다.<br><br>
 [3] ORDER SIBLINGS BY<br>
 -같은 계층 레벨의 행을 정렬하는 데 사용된다.<br>
